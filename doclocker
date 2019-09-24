@@ -26,6 +26,10 @@ def Signup(): # This is the signup definition,
     signupButton = Button(roots, text='Signup', command=FSSignup) 
     signupButton.grid(columnspan=2, sticky=W)
     roots.mainloop() 
+    
+def browsefunc():
+    filename = askopenfilename()
+    pathlabel.config(text=filename)    
  
 def FSSignup():
     with open(creds, 'w') as f: # Creates a document using the variable we made at the top.
@@ -76,6 +80,27 @@ def CheckLogin():
         r.geometry('150x50') # Makes the window a certain size
         rlbl = Label(r, text='\nwelcome to document locker') # "logged in" label
         rlbl.pack() # Pack is like .grid(), just different
+        tabControl=ttk.Notebook(r)#created tabcontrol
+        tab1=ttk.Frame(tabControl)
+        tabControl.add(tab1, text='File')#creates a tab named file
+        tabControl.pack(expand=1, fill='both')
+        tab2=ttk.Frame(tabControl)
+        tabControl.add(tab2, text='Profile')
+        tabControl.pack(expand=1, fill='both')
+        btn1t1=ttk.Button(tab1,text='Upload', command=browsefunc)
+        btn1t1.pack()
+        pathlabel=Label(r)
+        pathlabel.pack()
+        btn2t1=ttk.Button(tab1, text='Uploaded Documents')
+        btn2t1.pack()
+        btn3t1=ttk.Button(tab1, text='Want to know about Us?')
+        btn3t1.pack()
+        btn1t2=ttk.Button(tab2, text='Update Profile')
+        btn1t2.pack()
+        btn2t2=ttk.Button(tab2, text='Signout')
+        btn2t2.pack()
+        
+        
         r.mainloop()
     else:
         r = Tk()
